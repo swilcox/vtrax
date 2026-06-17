@@ -1,5 +1,7 @@
 # vtrax
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A terminal (TUI) module player for `.mod` / `.xm` / `.it` / `.s3m` / `.mtm`
 (and anything else libopenmpt reads), written in **V**. Per-channel level
 meters, a scrolling pattern view, a master spectrum analyzer, a master output
