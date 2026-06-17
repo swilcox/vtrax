@@ -1,0 +1,16 @@
+# build output
+/vtrax
+/vtrax_trace
+/src/src
+/src/vtrax
+*.o
+
+# V
+*.tmp.c
+
+# macOS
+.DS_Store
+
+# local tooling state
+.claude/settings.local.json
+.code-review-graph/
