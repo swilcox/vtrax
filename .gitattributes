@@ -1,0 +1,3 @@
+# Vendored C dependencies (miniaudio, atomics glue) — exclude from GitHub's
+# language stats so the repo is correctly reported as V.
+vendor/* linguist-vendored

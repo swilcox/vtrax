@@ -1,6 +1,9 @@
 # vtrax
 
+[![CI](https://github.com/swilcox/vtrax/actions/workflows/ci.yml/badge.svg)](https://github.com/swilcox/vtrax/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Language: V](https://img.shields.io/github/languages/top/swilcox/vtrax)](https://vlang.io)
+[![Platform: macOS | Linux](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey)](#)
 
 A terminal (TUI) module player for `.mod` / `.xm` / `.it` / `.s3m` / `.mtm`
 (and anything else libopenmpt reads), written in **V**. Per-channel level
