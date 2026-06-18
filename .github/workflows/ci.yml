@@ -38,16 +38,16 @@ jobs:
         run: |
           curl -sSL https://github.com/vlang/v/releases/download/0.5.1/v_linux.zip -o v.zip
           unzip -q v.zip
-          sudo ./v/v symlink
-          v version
+          echo "$PWD/v" >> "$GITHUB_PATH"
+          ./v/v version
 
       - name: Install V (macOS)
         if: runner.os == 'macOS'
         run: |
           curl -sSL https://github.com/vlang/v/releases/download/0.5.1/v_macos_arm64.zip -o v.zip
           unzip -q v.zip
-          sudo ./v/v symlink
-          v version
+          echo "$PWD/v" >> "$GITHUB_PATH"
+          ./v/v version
 
       # Force the system C compiler: the vendored C (miniaudio SIMD, GCC atomic
       # builtins) doesn't compile under V's default tcc backend, which `v test`
