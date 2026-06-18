@@ -29,9 +29,11 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install libopenmpt pkg-config
 
+      # Pin to the released V used for development; V's master HEAD has a
+      # codegen regression that breaks `v test` on this project.
       - name: Install V
         run: |
-          git clone --depth 1 https://github.com/vlang/v
+          git clone --depth 1 --branch 0.5.1 https://github.com/vlang/v
           cd v
           make
           sudo ./v symlink
@@ -42,9 +44,5 @@ jobs:
       - name: Build
         run: v -cc cc -o vtrax src
 
-      # -no-skip-unused: per-file test builds otherwise prune the audio/FFT code
-      # that the test doesn't reference, which trips a codegen bug in the C
-      # output. The full binary build keeps it (main() uses it), so only tests
-      # need this.
       - name: Test
-        run: v -cc cc -no-skip-unused test src
+        run: v -cc cc test src
