@@ -42,5 +42,9 @@ jobs:
       - name: Build
         run: v -cc cc -o vtrax src
 
+      # -no-skip-unused: per-file test builds otherwise prune the audio/FFT code
+      # that the test doesn't reference, which trips a codegen bug in the C
+      # output. The full binary build keeps it (main() uses it), so only tests
+      # need this.
       - name: Test
-        run: v -cc cc test src
+        run: v -cc cc -no-skip-unused test src
