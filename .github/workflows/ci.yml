@@ -36,8 +36,11 @@ jobs:
           make
           sudo ./v symlink
 
+      # Force the system C compiler: the vendored C (miniaudio SIMD, GCC atomic
+      # builtins) doesn't compile under V's default tcc backend, which `v test`
+      # would otherwise use.
       - name: Build
-        run: v -o vtrax src
+        run: v -cc cc -o vtrax src
 
       - name: Test
-        run: v test src
+        run: v -cc cc test src
