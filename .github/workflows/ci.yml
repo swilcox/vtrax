@@ -30,13 +30,24 @@ jobs:
         run: brew install libopenmpt pkg-config
 
       # Pin to the released V used for development; V's master HEAD has a
-      # codegen regression that breaks `v test` on this project.
-      - name: Install V
+      # codegen regression that breaks `v test` on this project. Use the
+      # prebuilt release binary -- building old tags from source fails because
+      # `make` pulls an incompatible bootstrap.
+      - name: Install V (Linux)
+        if: runner.os == 'Linux'
         run: |
-          git clone --depth 1 --branch 0.5.1 https://github.com/vlang/v
-          cd v
-          make
-          sudo ./v symlink
+          curl -sSL https://github.com/vlang/v/releases/download/0.5.1/v_linux.zip -o v.zip
+          unzip -q v.zip
+          sudo ./v/v symlink
+          v version
+
+      - name: Install V (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          curl -sSL https://github.com/vlang/v/releases/download/0.5.1/v_macos_arm64.zip -o v.zip
+          unzip -q v.zip
+          sudo ./v/v symlink
+          v version
 
       # Force the system C compiler: the vendored C (miniaudio SIMD, GCC atomic
       # builtins) doesn't compile under V's default tcc backend, which `v test`
